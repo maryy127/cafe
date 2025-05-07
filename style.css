@@ -329,7 +329,7 @@ section {
     }
     .menu {
         width: 40px;
-        aspect-ratio: 1 / 1;
+        height: 40px;
         background-color: rgba(238, 218, 194, 0.727);
         padding: 6px;
         border-radius: 10px;
