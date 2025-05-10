@@ -1,47 +1,134 @@
 document.addEventListener('DOMContentLoaded', () => {
     const buttons = document.querySelectorAll('.btn-menu');
     const goods = document.querySelectorAll('.good');
-
     const categoryMap = {
-        'Спец. предложения': 'special',
+        'Акции': 'special',
         'Кофе': 'cofe',
         'Чай': 'tea',
         'Выпечка': 'baked',
-        'Все': 'all'
+        'Все': 'all',
+        'Новинки': 'new'
     };
 
-    const specials = document.querySelectorAll('.special');
+    let currentCategory = 'all'; // Текущая категория по умолчанию
+    let productsPerPage;
+    let totalPages;
+    let currentPage = 1;
 
+    const pagination = document.querySelector('.pagination');
+    const prevButton = pagination.querySelector('.prev-page');
+    const nextButton = pagination.querySelector('.next-page');
+    const pageNumber = pagination.querySelector('.page-number');
+
+    // Функция для получения количества товаров на странице
+    function getProductsPerPage() {
+        const width = window.innerWidth;
+        if (width > 1239) return 6;
+        if (width < 553) return 3;
+        return 4;
+    }
+
+    // Функция для фильтрации товаров по категории
+    function filterGoods() {
+        let filteredGoods = [];
+        goods.forEach(good => {
+            if (currentCategory === 'all' || good.classList.contains(currentCategory)) {
+                filteredGoods.push(good);
+            }
+        });
+        return filteredGoods;
+    }
+
+    // Функция для отображения товаров текущей страницы
+    function showPage(page) {
+        const filteredGoods = filterGoods();
+        const start = (page - 1) * productsPerPage;
+        const end = start + productsPerPage;
+
+        filteredGoods.forEach((good, index) => {
+            if (index >= start && index < end) {
+                good.classList.add('active');
+            } else {
+                good.classList.remove('active');
+            }
+        });
+
+        // Скрываем товары, не входящие в текущую категорию
+        goods.forEach(good => {
+            if (!filteredGoods.includes(good)) {
+                good.classList.remove('active');
+            }
+        });
+
+        pageNumber.textContent = page;
+    }
+
+    // Функция для обновления кнопок пагинации
+    function updateButtons() {
+        prevButton.disabled = currentPage === 1;
+        nextButton.disabled = currentPage === totalPages;
+    }
+
+    // Функция для обновления пагинации
+    function updatePagination() {
+        productsPerPage = getProductsPerPage();
+        const filteredGoods = filterGoods();
+        totalPages = Math.ceil(filteredGoods.length / productsPerPage) || 1;
+        if (currentPage > totalPages) currentPage = totalPages;
+        showPage(currentPage);
+        updateButtons();
+    }
+
+    // Инициализация при загрузке
+    updatePagination();
+
+    // Обработка изменения размера окна
+    window.addEventListener('resize', updatePagination);
+
+    // Обработка кликов по кнопкам категорий
     buttons.forEach(button => {
         button.addEventListener('click', () => {
             buttons.forEach(btn => btn.classList.remove('active'));
             button.classList.add('active');
 
             const categoryText = button.textContent;
-            const categoryClass = categoryMap[categoryText];
+            currentCategory = categoryMap[categoryText];
 
-            goods.forEach(good => {
-                good.classList.remove('active');
-                if (categoryClass === 'all' || good.classList.contains(categoryClass)) {
-                    good.classList.add('active'); 
-                }
-            });
+            currentPage = 1; 
+            updatePagination();
         });
     });
-    
+
+    // Обработка кликов по кнопкам пагинации
+    nextButton.addEventListener('click', () => {
+        if (currentPage < totalPages) {
+            currentPage++;
+            showPage(currentPage);
+            updateButtons();
+        }
+    });
+
+    prevButton.addEventListener('click', () => {
+        if (currentPage > 1) {
+            currentPage--;
+            showPage(currentPage);
+            updateButtons();
+        }
+    });
+
+    // Обработка сердечек
     goods.forEach(good => {
         const regularHeart = good.querySelector('.fa-regular.fa-heart');
         const solidHeart = good.querySelector('.fa-solid.fa-heart');
 
         if (!regularHeart || !solidHeart) {
             console.warn('Не найдены иконки сердечек в одном из элементов .good:', good);
-            return; 
+            return;
         }
 
         regularHeart.setAttribute('title', 'Добавить в Избранное');
-        solidHeart.setAttribute('title', 'Удалить из Избранное');
+        solidHeart.setAttribute('title', 'Удалить из Избранного');
 
-        // Обработчик для пустого сердечка
         regularHeart.addEventListener('click', () => {
             regularHeart.style.opacity = '0';
             setTimeout(() => {
@@ -53,7 +140,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 100);
         });
 
-        // Обработчик для полного сердечка
         solidHeart.addEventListener('click', () => {
             solidHeart.style.opacity = '0';
             setTimeout(() => {
@@ -66,23 +152,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Расчет скидки для спецпредложений
+    const specials = document.querySelectorAll('.special');
     specials.forEach(special => {
-        // Находим элемент с ценой
         const priceElement = special.querySelector('.price');
-        // Извлекаем старую цену из <s>
         const oldPriceText = priceElement.querySelector('s').textContent;
-        // Извлекаем новую цену (последний текст в .price, после <s>)
         const newPriceText = priceElement.childNodes[priceElement.childNodes.length - 1].textContent.trim();
 
-        // Удаляем символ ₽ и преобразуем в числа
         const oldPrice = parseFloat(oldPriceText.replace('₽', ''));
         const newPrice = parseFloat(newPriceText.replace('₽', ''));
 
-        // Рассчитываем процент скидки
         const discount = ((oldPrice - newPrice) / oldPrice) * 100;
-        const discountRounded = Math.round(discount); // Округляем до целого
+        const discountRounded = Math.round(discount);
 
-        // Записываем результат в .disc p
         const discountElement = special.querySelector('.disc p');
         discountElement.textContent = `–${discountRounded}%`;
     });
