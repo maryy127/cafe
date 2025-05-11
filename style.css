@@ -86,6 +86,7 @@ input[type="checkbox"] {
     align-items: center;
     text-align: center;
     color: white;
+    position: relative;
 }
 
 .hero-logo {
@@ -93,6 +94,17 @@ input[type="checkbox"] {
     margin-bottom: 20px;
     filter: drop-shadow(2px 1px 7px rgba(255, 255, 255, 0.89));
     animation: fadeIn 1.5s ease-in;
+}
+.hero-480 {
+    display: none;
+}
+.hero-content {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    gap: 10px;
 }
 
 #hero h1,
@@ -663,8 +675,8 @@ section {
         padding: 9px;
     }
 
-    #hero {
-        background-image: url('main-imgs/hero-480.jpg');
+    #hero, #our-gooods {
+        background-image: none;
     }
 
     #hero h1 {
@@ -676,8 +688,21 @@ section {
         font-weight: 600;
     }
 
+    .hero-480{
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 700px;
+        object-fit: cover;
+        z-index: 1;
+    }
+    .hero-content{
+        z-index: 2;
+    }
+
     #our-goods {
-        background-image: url('goods-imgs/main-480.jpeg');
         color: #fff;
     }
 }
