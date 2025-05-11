@@ -328,12 +328,12 @@ footer a:hover {
     background-position: center;
     height: 700px;
     display: flex;
-    padding: 10px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
     color: #3e2f2c;
+    position: relative;
 }
 
 /* Меню */
@@ -676,7 +676,7 @@ section {
     }
 
     #hero, #our-gooods {
-        background-image: none;
+        background-image: unset;
     }
 
     #hero h1 {
@@ -698,15 +698,13 @@ section {
         object-fit: cover;
         z-index: 1;
     }
-    #our-goods .hero-480 {
-        height: 700px !important;
-    }
     .hero-content{
         z-index: 2;
     }
 
     #our-goods {
         color: #fff;
+        background-image: unset;
     }
 }
 
