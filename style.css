@@ -87,6 +87,8 @@ input[type="checkbox"] {
     text-align: center;
     color: white;
     position: relative;
+    cursor: url('main-imgs/stalin.png') 42 42, auto;
+
 }
 
 .hero-logo {
@@ -128,6 +130,7 @@ input[type="checkbox"] {
     cursor: pointer;
     font-size: 16px;
     text-decoration: none;
+    cursor: url('main-imgs/cursor.png') 42 42, auto;
 
 }
 
@@ -153,6 +156,7 @@ input[type="checkbox"] {
 #about img {
     max-width: 97%;
     border-radius: 10px;
+    cursor: url('main-imgs/zadumalsya.png') 32 32, auto;
 }
 
 /* История */
@@ -175,6 +179,8 @@ input[type="checkbox"] {
     max-width: 500px;
     border-radius: 10px;
     position: relative;
+    cursor: url('main-imgs/serp-cur.png') 42 42, auto;
+
 }
 
 .q {
@@ -290,6 +296,7 @@ footer a:hover {
     color: #7591d3;
     font-weight: bold;
     font-style: normal !important;
+    cursor: url('main-imgs/cursor.png') 32 32, auto;
 }
 
 .credits i.fas {
@@ -383,6 +390,8 @@ footer a:hover {
     width: 30%;
     border-radius: 16px;
     position: relative;
+    cursor: url('main-imgs/serp-cur.png') 42 42, auto;
+
 }
 
 .good.active {
@@ -502,6 +511,68 @@ img.new{
     cursor: not-allowed;
 }
 
+
+/* Спец предложения */
+#special{
+    margin: 30px auto;
+    text-align: center;
+}
+
+#special .title {
+    font-size: 36px;
+    font-weight: bold;
+    color: #3e2723;
+    animation: fadeIn 1s ease-in;
+}
+
+#special .item {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    display: flex;
+    height: 240px;
+    cursor: url('main-imgs/serp-cur.png') 42 42, auto;
+
+}
+
+#special .item-title {
+    font-size: 24px;
+    color: #4caf50;
+}
+
+#special .timer {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 16px;
+    color: #ff5722;
+    flex-wrap: wrap;
+}
+
+#special .timer-time {
+    background-color: #ff5722;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: url('main-imgs/cursor.png') 32 32, auto;
+}
+#special .specials{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px;
+    gap: 1em;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.9s ease-in-out;
+}
+.item.cookie{
+    cursor: url('main-imgs/cookie.png') 32 32, auto !important;
+}
 @keyframes bounce {
     0% {
         transform: translateY(0);

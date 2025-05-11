@@ -20,6 +20,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const nextButton = pagination.querySelector('.next-page');
     const pageNumber = pagination.querySelector('.page-number');
 
+    const timerElements = document.querySelectorAll('.timer-time');
+    const endDate = new Date();
+    endDate.setDate(endDate.getDate() + 3);
+
     // Функция для получения количества товаров на странице
     function getProductsPerPage() {
         const width = window.innerWidth;
@@ -167,5 +171,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const discountElement = special.querySelector('.disc p');
         discountElement.textContent = `–${discountRounded}%`;
+    });
+
+    // Таймер спецпредложений
+    function getRandomEndTime() {
+        return 24 + Math.floor(Math.random() * (168 - 24 + 1)); 
+    }
+
+    // Устанавливаем уникальную конечную дату для каждого таймера
+    timerElements.forEach(timer => {
+        const now = new Date();
+        const hoursToAdd = getRandomEndTime();
+        const endDate = new Date(now.getTime() + hoursToAdd * 60 * 60 * 1000);
+
+        // Запускаем таймер для каждого элемента
+        setInterval(() => {
+            const now = new Date();
+            const diff = endDate - now;
+
+            // Проверяем, истекло ли время
+            if (diff <= 0) {
+                timer.textContent = 'Акция завершена';
+                return; // Останавливаем обновление после истечения времени
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            const timeString = `${days} д ${hours} ч ${minutes} мин ${seconds} c`;
+            timer.textContent = timeString;
+        }, 1000);
     });
 });
