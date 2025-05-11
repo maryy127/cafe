@@ -698,6 +698,9 @@ section {
         object-fit: cover;
         z-index: 1;
     }
+    #our-goods .hero-480 {
+        height: 700px !important;
+    }
     .hero-content{
         z-index: 2;
     }
