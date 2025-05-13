@@ -33,6 +33,7 @@ header {
     position: sticky;
     top: 0;
     z-index: 100;
+    cursor: url('main-imgs/serp-cur.png') 32 32, auto;
 }
 
 .logo {
@@ -266,6 +267,7 @@ footer {
     color: white;
     padding: 20px;
     text-align: center;
+    cursor: url('main-imgs/stalin.png') 32 32, auto;
 }
 
 .social a {
@@ -341,6 +343,7 @@ footer a:hover {
     text-align: center;
     color: #3e2f2c;
     position: relative;
+    cursor: url('main-imgs/stalin.png') 32 32, auto;
 }
 
 /* Меню */
@@ -521,13 +524,17 @@ img.new{
 #special .title {
     font-size: 36px;
     font-weight: bold;
-    color: #3e2723;
+    color: #ff5722;
     animation: fadeIn 1s ease-in;
 }
 
+#special .title:hover {
+    opacity: 0.5;
+    filter: hue-rotate(90deg);
+}
 #special .item {
     background-color: white;
-    padding: 20px;
+    padding: 28px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 300px;
@@ -535,21 +542,31 @@ img.new{
     justify-content: center;
     flex-direction: column;
     display: flex;
-    height: 240px;
+    height: 300px;
     cursor: url('main-imgs/serp-cur.png') 42 42, auto;
+    position: relative;
 
 }
 
 #special .item-title {
     font-size: 24px;
     color: #4caf50;
+    height: 18%;
+    display: flex;
+    align-items: center;
+}
+
+.item-text{
+    height: 16%;
+    display: flex;
+    align-items: center;
 }
 
 #special .timer {
     display: flex;
     align-items: center;
     gap: 9px;
-    font-size: 16px;
+    font-size: 18px;
     color: #ff5722;
     flex-wrap: wrap;
 }
@@ -561,6 +578,19 @@ img.new{
     border-radius: 5px;
     cursor: url('main-imgs/cursor.png') 32 32, auto;
 }
+
+p.prim{
+    position: absolute;
+    font-size: 12px;
+    bottom: 3px;
+    width: 280px;
+    color: rgb(175, 168, 168);
+}
+
+.lolipop{
+    cursor: url('goods-imgs/lolipop.png') 32 32, auto !important;
+}
+
 #special .specials{
     display: flex;
     flex-wrap: wrap;
@@ -573,6 +603,36 @@ img.new{
 .item.cookie{
     cursor: url('main-imgs/cookie.png') 32 32, auto !important;
 }
+
+/* Стрелка для перехода на начало */
+.scroll-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background-color: #71605d; 
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    cursor: url('main-imgs/cursor.png') 32 32, auto;
+    opacity: 0; 
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 1000;
+}
+
+.scroll-to-top:hover {
+    transform: translateY(-5px); 
+    background-color: #4caf50; 
+}
+
+.scroll-to-top.visible {
+    opacity: 1; 
+}
+
 @keyframes bounce {
     0% {
         transform: translateY(0);
@@ -726,6 +786,15 @@ section {
     .btn-menu {
         flex: 0 0 auto;
         font-size: 17px;
+    }
+    #special .title{
+        font-size: 29px;
+    }
+    .item-title{
+        font-size: 19px;
+    }
+    #special .timer{
+        font-size: 16.5px;
     }
 }
 @media (max-width: 552px) {

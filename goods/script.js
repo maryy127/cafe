@@ -5,15 +5,19 @@ document.addEventListener('DOMContentLoaded', () => {
         'Акции': 'special',
         'Кофе': 'cofe',
         'Чай': 'tea',
-        'Выпечка': 'baked',
+        'Десерты и выпечка': 'baked',
         'Все': 'all',
         'Новинки': 'new'
     };
 
-    let currentCategory = 'all'; // Текущая категория по умолчанию
+    const titleSpecial = document.querySelector('#special .title')
+
+    let currentCategory = 'all'; 
     let productsPerPage;
     let totalPages;
     let currentPage = 1;
+
+    let tuda = -1;
 
     const pagination = document.querySelector('.pagination');
     const prevButton = pagination.querySelector('.prev-page');
@@ -83,11 +87,18 @@ document.addEventListener('DOMContentLoaded', () => {
         updateButtons();
     }
 
-    // Инициализация при загрузке
     updatePagination();
 
-    // Обработка изменения размера окна
     window.addEventListener('resize', updatePagination);
+
+    // Спец предложения hue-rotate
+    setInterval(() => {
+        const randomHue = Math.floor(Math.random() * 361);
+        const randomTrans = Math.floor(Math.random() * 15);
+        titleSpecial.style.filter = `hue-rotate(${randomHue}deg)`; 
+        titleSpecial.style.transform = `translateY(${randomTrans * tuda}px)`;
+        tuda = tuda * -1
+    }, 900);
 
     // Обработка кликов по кнопкам категорий
     buttons.forEach(button => {

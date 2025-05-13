@@ -1,0 +1,38 @@
+document.addEventListener('DOMContentLoaded', () => {
+    const scrollToTopBtn = document.querySelector('.scroll-to-top');
+    
+    if (!scrollToTopBtn) {
+        console.warn('Элемент .scroll-to-top не найден');
+        return;
+    }
+
+    let targetId;
+    if (document.body.classList.contains('goods-page')) {
+        targetId = 'our-goods';
+    } else if (document.body.classList.contains('main-page')) {
+        targetId = 'hero';
+    } else if (document.body.classList.contains('work-page')){
+        targetId = 'our-work';
+    }
+
+    const targetElement = document.getElementById(targetId);
+    if (!targetElement) {
+        console.warn(`Элемент с id ${targetId} не найден`);
+        return;
+    }
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            scrollToTopBtn.classList.add('visible');
+        } else {
+            scrollToTopBtn.classList.remove('visible');
+        }
+    });
+
+    scrollToTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: targetElement.offsetTop,
+            behavior: 'smooth'
+        });
+    });
+});

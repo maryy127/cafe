@@ -7,9 +7,10 @@
     <script src="script.js"></script>
     <link rel="stylesheet" href="../style.css">
     <link rel="shortcut icon" href="../main-imgs/logo.ico">
+    <script src="../general-scripts/scroll-btn.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
-<body>
+<body class="goods-page">
     <header>
         <input type="checkbox" id="menu-toggle">
         <label for="menu-toggle" class="menu">
@@ -20,7 +21,7 @@
             <ul>
                 <li><a href="../index.html">Главная</a></li>
                 <li><a href="#">Товары</a></li>
-                <li><a href="#">Франшиза</a></li>
+                <li><a href="../join-us/">Работа</a></li>
                 <li><a href="../index.html#contact">Контакты</a></li>
             </ul>
         </nav>
@@ -36,6 +37,10 @@
         
     </section>
 
+    <div class="scroll-to-top">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+
     <section id="menu">
         <div class="btns">
             <div class="btn-menu">Кофе</div>
@@ -43,7 +48,7 @@
             <div class="btn-menu active">Все</div>
             <div class="btn-menu spec">Акции</div>
             <div class="btn-menu">Новинки</div>
-            <div class="btn-menu">Выпечка</div>
+            <div class="btn-menu">Десерты и выпечка</div>
 
             
         </div>
@@ -62,7 +67,7 @@
                 <i class="fa-solid fa-heart"></i>
                 <i class="fa-regular fa-heart"></i>
             </div>
-            <div class="good special cofe new">
+            <div class="good special baked new">
                 <img src="../goods-imgs/carrot.jpg" alt="">
                 <p class="title">Морковный торт</p>
                 <p class="price">
@@ -236,19 +241,30 @@
                     <span class="timer-time">3 д 12 ч 30 мин 10 сек</span>
                 </div>
             </div>
-            <div class="item cookie">
-                <h3 class="item-title">Печенько пасхалко</h3>
-                <p class="item-text">пфффффф</p>
+            <div class="item lolipop">
+                <h3 class="item-title">По леденецу – каждому молодцу!</h3>
+                <p class="item-text">Получи леденец в подарок</p>
+                <p class="prim">*Акция действует только для посетилей с детьми до 5 лет</p>
                 <div class="timer">
                     <span class="timer-text">Осталось:</span>
                     <span class="timer-time">3 д 12 ч 30 мин 10 сек</span>
                 </div>
             </div>
+            <div class="item cookie">
+                <h3 class="item-title">Печенько бесплатно</h3>
+                <p class="item-text">Сьешь его, пока не разобрали)))))))</p>
+                <div class="timer">
+                    <span class="timer-text">Осталось:</span>
+                    <span class="timer-time">3 д 12 ч 30 мин 10 сек</span>
+                </div>
+            </div>
+    
         </div>
     </section>
 
     <footer>
         <img src="../main-imgs/logo.png" alt="Логотип кофейни" class="footer-logo" width="100px">
+        <p style="color: beige;"><i>Москва, Кузнецкий Мост, 21/5</i></p>
         <p>&copy; 2025 Кофейня. Все права защищены.</p>
         <div class="social">
             <a href="https://t.me/s/duoclub" target="_blank">Telegram</a>
