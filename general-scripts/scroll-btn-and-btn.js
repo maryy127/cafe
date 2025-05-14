@@ -1,6 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
     const scrollToTopBtn = document.querySelector('.scroll-to-top');
+    const bounceBtn = document.querySelector('.btn')
     
+    bounceBtn.addEventListener('click', () => {
+        bounceBtn.classList.remove('fa-bounce')
+    });
+
     if (!scrollToTopBtn) {
         console.warn('Элемент .scroll-to-top не найден');
         return;
