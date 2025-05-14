@@ -150,7 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 regularHeart.style.display = 'none';
                 solidHeart.style.display = 'block';
                 solidHeart.style.opacity = '1';
-                solidHeart.style.animation = 'bounce 0.5s ease';
+                solidHeart.classList.add('fa-bounce')
                 solidHeart.setAttribute('title', 'Удалить из Избранного');
             }, 100);
         });

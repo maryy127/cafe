@@ -111,15 +111,16 @@ input[type="checkbox"] {
 }
 
 #hero h1,
-#our-goods h1 {
+#our-goods h1, #our-work h1 {
     font-size: 48px;
-    margin: 0;
+    margin: 0 10px;
 }
 
 #hero p,
-#our-goods p {
+#our-goods p, #our-work p {
     font-size: 24px;
-    margin: 10px 0;
+    margin: 0 10px;
+    margin-bottom: 10px;
 }
 
 .btn {
@@ -548,6 +549,14 @@ img.new{
 
 }
 
+.item .fa-bell{
+    color: #ff5722;
+    font-size: 34px;
+    position: absolute;
+    top: 17px;
+    right: 21px;
+}
+
 #special .item-title {
     font-size: 24px;
     color: #4caf50;
@@ -633,6 +642,50 @@ p.prim{
     opacity: 1; 
 }
 
+/* Страница работы */
+#our-work{
+    background-image: url('work-imgs/work.jpeg');
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    height: 700px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #3e2f2c;
+    position: relative;
+    cursor: url('main-imgs/stalin.png') 32 32, auto;
+    color: #fff;
+}
+#motivate {
+    background-color: #f5f5f5; 
+    padding: 40px 20px;
+    text-align: center;
+    margin-top: 40px;
+}
+#motivate h2{
+    font-weight: 800;
+    font-size: 28px;
+    color: #3e2723;
+    animation: fadeIn 1s ease-in;
+    margin: 20px auto;
+
+}
+#motivate p{
+    font-size: 18px;
+    color: #5d4037;
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto 10px;
+}
+#motivate .call{
+    font-size: 20px;
+    font-weight: 600;
+    color: #4caf50;
+    text-decoration: underline;
+}
 @keyframes bounce {
     0% {
         transform: translateY(0);
@@ -705,7 +758,7 @@ section {
     }
 
     #hero,
-    #our-goods {
+    #our-goods, #our-work {
         height: 600px;
     }
 
@@ -714,13 +767,13 @@ section {
     }
 
     #hero h1,
-    #our-goods h1 {
+    #our-goods h1, #our-work h1 {
         font-size: 36px;
     }
 
     #hero p,
-    #our-goods p {
-        font-size: 16px;
+    #our-goods p, #our-work p {
+        font-size: 14px;
     }
 
     .about-content {
@@ -796,6 +849,19 @@ section {
     #special .timer{
         font-size: 16.5px;
     }
+
+    #our-work p, #our-work h1{
+    background-color: #3e27231c;
+    }
+    #motivate h1{
+        font-size: 30px;
+    }
+    #motivate p{
+        font-size: 15px;
+    }
+    #motivate .call{
+        font-size: 18px;
+    }
 }
 @media (max-width: 552px) {
     .good{
@@ -815,7 +881,7 @@ section {
         padding: 9px;
     }
 
-    #hero, #our-gooods {
+    #hero, #our-gooods, #our-work {
         background-image: unset;
     }
 
