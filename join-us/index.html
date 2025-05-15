@@ -46,6 +46,18 @@
         <a href="#career-form" class="stan"><p class="call"><strong>Стань частью нашей команды уже сегодня!</strong></p></a>
     </section>
 
+    <section id="jobs">
+        <h2>Наши вакансии</h2>
+        <div class="jobs-cont">
+            <div class="card">
+
+            </div>
+            <div class="card">hi</div>
+            <div class="card">h</div>
+            <div class="card">g</div>
+        </div>
+    </section>
+
     <section id="career-form">
         <h2 class="form-title">Начни свою карьеру в кофейне уже сегодня!</h2>
 
@@ -53,13 +65,31 @@
             <h3 class="form-title">Оставь заявку на работу</h3>
             <input type="text" name="name" placeholder="Ваше имя" required>
             <input type="number" name="age" placeholder="Ваш возраст" required>
+            <div class="select">
+                <span>Желаемая должность</span>
+                <div class="select-wrapper">
+                    <select name="job-title" id="1">
+                        <option value="" disabled selected>Выберите должность</option>
+                        <option value="1">Бариста</option>
+                        <option value="2">Администратор</option>
+                        <option value="3">Пекарь-кондитер</option>
+                        <option value="4">Официант</option>
+                        <option value="7">Уборщик</option>
+                        <option value="5">Пощник ДипДи</option>
+                        <option value="6">Хороших отцовских</option>
+                    </select>
+                    <i class="fas fa-chevron-down select-arrow"></i>
+                </div>
+            </div>
+            
             <input type="tel" name="phone" placeholder="Ваш телефон">
             <input type="email" name="email" placeholder="Ваш email">
             <textarea name="message" placeholder="Опыт работы, если имеется"></textarea>
             <button type="submit" class="form-submit">Отправить</button>
         </form>
-
     </section>
+
+
     <div class="modal-overlay">
     <div class="modal-content">
         <span class="modal-close"><i class="fas fa-times"></i></span>

@@ -4,6 +4,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalOverlay = document.querySelector('.modal-overlay');
     const modalMessage = document.querySelector('.modal-message');
     const modalClose = document.querySelector('.modal-close');
+    const modalContent = document.querySelector('.modal-content');
+    const selectWrapper = document.querySelector('.select-wrapper');
+    const select = selectWrapper.querySelector('select');
 
     if (!form || !modalOverlay || !modalMessage || !modalClose) {
         console.warn('Не найдены элементы формы или модального окна');
@@ -14,9 +17,22 @@ document.addEventListener('DOMContentLoaded', () => {
         alert('перемога кто-та сюда нажал');
     });
 
+    select.addEventListener('click', () => {
+        selectWrapper.classList.toggle('open');
+    });
+
+    select.addEventListener('blur', () => {
+        selectWrapper.classList.remove('open');
+    });
+    select.addEventListener('change', () => {
+        selectWrapper.classList.remove('open');
+    });
+
+
     function showModal(message, isSuccess) {
         modalMessage.textContent = message;
-        modalMessage.style.color = isSuccess ? '#4caf50' : '#ff5722'; 
+        modalContent.style.backgroundColor = isSuccess ? '#a6dca8' : '#e38f76';
+        modalMessage.style.color = isSuccess ? '#4caf50' : '#ed2323'; 
         modalOverlay.classList.add('active');
     }
 
@@ -38,8 +54,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const name = document.querySelector('input[name="name"]').value;
         const phone = document.querySelector('input[name="phone"]').value;
         const email = document.querySelector('input[name="email"]').value;
-
-        if (name && phone && email) {
+        let age = document.querySelector('input[name="age"]').value;
+        age = Number(age);
+        const hasNumber = /\d/.test(name);
+        if (hasNumber === true){
+            showModal('мистер числительное бай', false)
+        }else if (age < 13){
+            showModal('Иди поиграй в машонки', false)
+        } else if (age > 94){
+            showModal('Отдохди от жизни', false)
+        }else if (name && phone && email) {
             showModal('Ваша заявка успешно отправлена! Мы скоро с вами свяжемся.', true);
             form.reset(); 
         } else {
