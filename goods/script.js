@@ -28,6 +28,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const endDate = new Date();
     endDate.setDate(endDate.getDate() + 3);
 
+    const bells = document.querySelectorAll('.bell-toggle');
+
+
     // Функция для получения количества товаров на странице
     function getProductsPerPage() {
         const width = window.innerWidth;
@@ -99,6 +102,25 @@ document.addEventListener('DOMContentLoaded', () => {
         titleSpecial.style.transform = `translateY(${randomTrans * tuda}px)`;
         tuda = tuda * -1
     }, 900);
+
+    bells.forEach(bell => {
+        bell.setAttribute('title', 'Кликни, чтобы остановить анимацию');
+        bell.addEventListener('click', () => {
+            if (bell.classList.contains('fa-shake')) {
+                setTimeout(() => {
+                    bell.classList.remove('fa-shake'); 
+                }, 300);
+                
+                bell.setAttribute('title', 'Кликни, чтобы начать анимацию');
+            } else {
+                setTimeout(() => {
+                    bell.classList.add('fa-shake');
+                }, 300);
+                 
+                bell.setAttribute('title', 'Кликни, чтобы остановить анимацию');
+            }
+        });
+    });
 
     // Обработка кликов по кнопкам категорий
     buttons.forEach(button => {

@@ -7,6 +7,28 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalContent = document.querySelector('.modal-content');
     const selectWrapper = document.querySelector('.select-wrapper');
     const select = selectWrapper.querySelector('select');
+    const btnsDownload = document.querySelectorAll('.card .btn');
+
+    // Скачивание файлов-требований
+    btnsDownload.forEach(button => {
+        button.addEventListener('click', () => {
+            const card = button.closest('.card');
+            if (!card) return;
+
+            const secondClass = card.classList[1];
+            if (!secondClass) return;
+
+            const fileName = `${secondClass}.txt`;
+
+            // Создаем ссылку для скачивания
+            const link = document.createElement('a');
+            link.href = fileName; 
+            link.download = fileName;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        });
+    });
 
     if (!form || !modalOverlay || !modalMessage || !modalClose) {
         console.warn('Не найдены элементы формы или модального окна');
