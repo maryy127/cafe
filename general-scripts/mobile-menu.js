@@ -53,33 +53,60 @@ document.addEventListener('DOMContentLoaded', () => {
     hasSubmenuItems.forEach(item => {
         const parentLink = item.querySelector('a');
         parentLink.addEventListener('click', (e) => {
-            document.querySelectorAll('.mobile-submenu').forEach(s => {
-                if (s.classList.contains('active') === true){
-                    s.classList.remove('active');
-                }
-            });
             if (window.innerWidth <= 768) { 
                 e.preventDefault(); 
                 const mobileSubmenu = item.querySelector('.mobile-submenu');
                 if (mobileSubmenu) {
-                    mobileSubmenu.classList.toggle('active'); 
+                    if (mobileSubmenu.classList.contains('active') === true){
+                        mobileSubmenu.classList.remove('active');
+                    }else{
+                        document.querySelectorAll('.mobile-submenu').forEach(s => {
+                            if (s.classList.contains('active') === true){
+                                s.classList.remove('active');
+                            }
+                        });
+                        mobileSubmenu.classList.add('active')
+                    }
                 }
             }
         });
     });
 
     // Закрытие меню при клике на любую ссылку (кроме родительских пунктов)
+    let clickCount = 0;
+    let clickTimeout;
+
     mobileMenu.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', (e) => {
-            if (!link.parentElement.classList.contains('has-submenu')) {
-                menuOnMobile.classList.toggle('active');
+            clickCount++;
+
+            if (clickCount === 1) {
+                // таймер для определения одиночного клика
+                clickTimeout = setTimeout(() => {
+                    if (clickCount === 1 && !link.parentElement.classList.contains('has-submenu')) {
+                        setTimeout(() => {
+                            mobileMenu.classList.remove('active');
+                            overlay.classList.remove('active');
+                            menuHeader.classList.remove('active');
+                            header.style.display = 'flex';
+                            header.style.animation = 'fadeIn 0.3s 1';
+                        }, 300);
+                    }
+                    clickCount = 0; 
+                }, 500); 
+            } else if (clickCount === 2) {
+                // Двойной клик
+                clearTimeout(clickTimeout); 
+                clickCount = 0; 
+                console.log('Двойной клик обнаружен, обработка остановлена');
                 setTimeout(() => {
                     mobileMenu.classList.remove('active');
-                    menuHeader.classList.remove('active');
                     overlay.classList.remove('active');
+                    menuHeader.classList.remove('active');
                     header.style.display = 'flex';
                     header.style.animation = 'fadeIn 0.3s 1';
-                }, 150); 
+                    window.location.href = link.href;
+                }, 200)
             }
         });
     });

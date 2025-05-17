@@ -174,7 +174,7 @@ header {
 
 .mobile-submenu {
     display: none;
-    margin-left: 40px;
+    margin-left: -1px;
 }
 .mobile-submenu a{
     color: #c5a4a4;
@@ -234,6 +234,7 @@ header {
     display: flex;
     flex-direction: column;
     height: 100%;
+    width: 100%;
     gap: 10px;
     user-select: none;
 }
