@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,24 +9,85 @@
     <link rel="stylesheet" href="../style.css">
     <link rel="shortcut icon" href="../main-imgs/logo.ico">
     <script src="../general-scripts/scroll-btn-and-btn.js"></script>
+    <script src="../general-scripts/mobile-menu.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
+
 <body class="goods-page">
     <header>
-        <input type="checkbox" id="menu-toggle">
-        <label for="menu-toggle" class="menu">
-            <p class="logo1"><i class="fa-solid fa-bars"></i></p>
-        </label>
         <div class="logo">Кофейня</div>
         <nav>
-            <ul>
-                <li><a href="../index.html">Главная</a></li>
-                <li><a href="#">Товары</a></li>
-                <li><a href="../join-us/">Работа</a></li>
-                <li><a href="../index.html#contact">Контакты</a></li>
+            <ul class="main-menu">
+                <li class="menu-item has-submenu">
+                    <a href="../index.html">Главная</a>
+                    <ul class="submenu">
+                        <li><a href="../index.html#about">История</a></li>
+                        <li><a href="../index.html#reviews">Отзывы</a></li>
+                        <li><a href="../index.html#contact">Контакты</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item has-submenu">
+                    <a href="#">Товары</a>
+                    <ul class="submenu">
+                        <li><a href="#menu">Меню</a></li>
+                        <li><a href="#special">Спец. предложения</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item has-submenu">
+                    <a href="../join-us/">Работа</a>
+                    <ul class="submenu">
+                        <li><a href="../join-us/index.html#jobs">Вакансии</a></li>
+                        <li><a href="../join-us/index.html#career-form">Оставить заявку</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item"><a href="../index.html#contact">Контакты</a></li>
             </ul>
         </nav>
+        <div class="mobile-menu-toggle">
+            <svg xmlns="http://www.w3.org/2000/svg" class="menu on-header" xmlns:xlink="http://www.w3.org/1999/xlink" width="17px" height="16px">
+                <path fill-rule="evenodd"  fill="rgb(255, 255, 255)" d="M-0.000,-0.000 L17.000,-0.000 L17.000,2.000 L-0.000,2.000 L-0.000,-0.000 Z"/>
+                <path fill-rule="evenodd"  fill="rgb(255, 255, 255)" d="M-0.000,7.000 L17.000,7.000 L17.000,9.000 L-0.000,9.000 L-0.000,7.000 Z"/>
+                <path fill-rule="evenodd"  fill="rgb(255, 255, 255)" d="M-0.000,14.000 L17.000,14.000 L17.000,16.000 L-0.000,16.000 L-0.000,14.000 Z"/>
+            </svg>
+        </div>
     </header>
+    <nav class="mobile-menu">
+        <div class="logo mobile">Кофейня</div>
+        <ul class="mobile-main-menu">
+            <li class="menu-item has-submenu">
+                <a href="../index.html">Главная</a>
+                <ul class="mobile-submenu">
+                    <li><a href="../index.html#about">История</a></li>
+                    <li><a href="../index.html#reviews">Отзывы</a></li>
+                    <li><a href="../index.html#contact">Контакты</a></li>
+                </ul>
+            </li>
+            <li class="menu-item has-submenu">
+                <a href="#">Товары</a>
+                <ul class="mobile-submenu">
+                    <li><a href="#menu">Меню</a></li>
+                    <li><a href="#special">Спец. предложения</a></li>
+                </ul>
+            </li>
+            <li class="menu-item has-submenu">
+                <a href="../join-us/">Работа</a>
+                <ul class="mobile-submenu">
+                    <li><a href="../join-us/index.html#jobs">Вакансии</a></li>
+                    <li><a href="../join-us/index.html#career-form">Оставить заявку</a></li>
+                </ul>
+            </li>
+            <li class="menu-item"><a href="../#contact">Контакты</a></li>
+        </ul>
+        <div class="mobile-menu-toggle">
+            <svg xmlns="http://www.w3.org/2000/svg" class="menu on-mobile active" xmlns:xlink="http://www.w3.org/1999/xlink" width="17px" height="16px">
+                <path fill-rule="evenodd"  fill="rgb(255, 255, 255)" d="M-0.000,-0.000 L17.000,-0.000 L17.000,2.000 L-0.000,2.000 L-0.000,-0.000 Z"/>
+                <path fill-rule="evenodd"  fill="rgb(255, 255, 255)" d="M-0.000,7.000 L17.000,7.000 L17.000,9.000 L-0.000,9.000 L-0.000,7.000 Z"/>
+                <path fill-rule="evenodd"  fill="rgb(255, 255, 255)" d="M-0.000,14.000 L17.000,14.000 L17.000,16.000 L-0.000,16.000 L-0.000,14.000 Z"/>
+            </svg>
+        </div>
+
+    </nav>
+    <div class="overlay"></div>
 
     <section id="our-goods">
         <img src="../goods-imgs/main-480.jpeg" alt="" class="hero-480">
