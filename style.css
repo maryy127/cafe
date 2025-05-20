@@ -267,7 +267,7 @@ header {
 }
 
 .btn:hover {
-    transform: scale(1.05);
+    transform: scale(1.7);
     transition: transform 0.3s ease;
 }
 
@@ -1049,8 +1049,8 @@ option:checked {
     padding: 19px;
     border-radius: 1em;
     width: 300px;
-    border: dashed #000 3px;
-    box-shadow: 3px -2px 4px 1.7px #44343087;
+    border: dashed #542525 3px;
+    box-shadow: 2px -1px 4px 1px #844e4187;
     margin-right: 1.8px;
 }
 
@@ -1067,7 +1067,7 @@ option:checked {
     margin-top: 14px;
     margin-bottom: 10px;
     font-weight: 800;
-    text-shadow: 3px -1px 2.8px #7f4e3d85;
+    text-shadow: -2px -1px 5px #5d4037ac;
 }
 .jobs-cont .card .fa-dollar-sign{
     color: #4caf50;
@@ -1091,6 +1091,118 @@ option:checked {
 .salary strong{
     color: #0d3d0e;
 }
+
+/* Пожелания */
+#wish .container {
+    max-width: 600px;
+    margin: 30px auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    width: 90%;
+}
+
+#wish h1 {
+    text-align: center;
+    color: #3e2723;
+}
+
+#wish form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#wish input, #wish textarea {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: 'Open Sans', sans-serif;
+    color: #3e2723;
+}
+#wish textarea::placeholder{
+    color: #5f3c31;
+    font-style: italic;
+}
+
+#wish input::placeholder{
+    font-family: 'Open Sans', sans-serif;
+    color: #5d4037;
+}
+#wish button {
+    padding: 10px;
+    background-color: #3e2723;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Open Sans', sans-serif;
+}
+
+#wish button:hover {
+    background-color: #4caf50;
+}
+
+#wish #messages {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 300px; 
+   overflow-y: scroll; 
+   padding-right: 10px;
+   border: 2px solid #542525;
+}
+
+.message {
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.message .name {
+    font-weight: bold;
+    color: #3e2723;
+}
+
+.notification {
+    padding: 15px;
+    position: relative;
+    background-color: #ff5722;
+    color: white;
+    border-radius: 5px;
+    text-align: center;
+    z-index: 1000;
+    display: none;
+}
+#notification-container {
+    position: fixed;
+    right: 10px;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 300px;
+}
+
+.notification.active {
+    display: block;
+}
+
+.close-btn {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
 
 @keyframes bounce {
     0% {

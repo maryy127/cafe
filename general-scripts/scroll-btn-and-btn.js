@@ -18,6 +18,8 @@ document.addEventListener('DOMContentLoaded', () => {
         targetId = 'hero';
     } else if (document.body.classList.contains('work-page')){
         targetId = 'our-work';
+    } else if (document.body.classList.contains('wish-page')){
+        targetId = 'wish';
     }
 
     const targetElement = document.getElementById(targetId);
