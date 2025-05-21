@@ -98,8 +98,10 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(() => {
         const randomHue = Math.floor(Math.random() * 361);
         const randomTrans = Math.floor(Math.random() * 15);
+        const randomTrans2 = Math.floor(Math.random() * 6);
+        const tuda2 = Math.random() < 0.5 ? -1 : 1;
         titleSpecial.style.filter = `hue-rotate(${randomHue}deg)`; 
-        titleSpecial.style.transform = `translateY(${randomTrans * tuda}px)`;
+        titleSpecial.style.transform = `translate(${randomTrans * tuda}px, ${randomTrans2 * tuda2}px)`;
         tuda = tuda * -1
     }, 900);
 

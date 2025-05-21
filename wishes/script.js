@@ -10,17 +10,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Фиктивные отзывы
     const fakeWishes = [
-        { name: 'Алексей', text: 'Мне не нравится когда жирик по телеку !' },
+        { name: 'Алексей', text: 'ВОООО 👍👍👍👍👍' },
         { name: 'Мария', text: 'Обожаю вашу выпечку, особенно круассаны.' },
         { name: 'Иван', text: 'Уютная атмосфера, идеально для работы.' },
         { name: 'Елена', text: 'Лучший латте в городе!' },
-        { name: 'Дмитрий', text: 'Спасибо за дружелюбный персонал.' }
+        { name: 'Дмитрий', text: 'Спасибо за дружелюбный персонал.' },
+        { name: 'Екатерина', text: 'Каждый день радуюсь свежим кофе!' },
+        { name: 'Василий', text: 'Каждый день свежая выпечка 🥐🥐' }
     ];
 
     // Функция для отображения случайных отзывов
     function displayRandomWishes() {
-        const shuffled = fakeWishes.sort(() => 0.5 - Math.random());
-        const selected = shuffled.slice(0, 5);
+        const shuffled = fakeWishes.sort(() => 0.7 - Math.random());
+        const selected = shuffled.slice(0, 7);
         selected.forEach(wish => {
             const messageElement = createMessageElement(wish.name, wish.text);
             messagesContainer.appendChild(messageElement);
@@ -39,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function createNotification() {
         const notification = document.createElement('div');
         notification.classList.add('notification');
-        notification.innerHTML = 'Сообщение отправлено, но серверов пока что нет, поэтому можете написать мне в <a href="https://twitter.com/your-account" target="_blank">Твиттер</a>.';
+        notification.innerHTML = 'Сообщение отправлено, но серверов пока что нет, поэтому можете написать мне в <a href="https://twitter.com/sybau_radicals" style="color: brown;" target="_blank">Твиттер</a>.';
 
         const closeBtn = document.createElement('i');
         closeBtn.classList.add('fas', 'fa-times', 'close-btn');
@@ -65,6 +67,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 console.log('Все уведомления удалены, достигнут лимит:', maxNotifications);
             }
+            notification.style.animation = "1.1s translateNot 1";
+            notification.style.transform = "translateX(0)";
         } else {
             console.error('Контейнер уведомлений не найден!');
         }

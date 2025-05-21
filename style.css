@@ -6,6 +6,37 @@
     list-style: none;
 }
 
+*::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+*::-webkit-scrollbar-track {
+  border-radius: 8px;
+  background-color: #FFFFFF;
+}
+
+*::-webkit-scrollbar-track:hover {
+  background-color: #FFFFFF;
+}
+
+*::-webkit-scrollbar-track:active {
+  background-color: #F5F5F5;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background-color: #A96B5F;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: #A96A5F;
+}
+
+*::-webkit-scrollbar-thumb:active {
+  background-color: #7B4D45;
+}
+
+
 a {
     text-decoration: none;
     cursor: url('main-imgs/cursor.png') 32 32, auto;
@@ -131,7 +162,6 @@ header {
 .mobile-menu-toggle {
     display: none;
     font-size: 24px;
-    cursor: pointer;
 }
 
 .mobile-menu {
@@ -258,7 +288,6 @@ header {
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
-    cursor: pointer;
     font-size: 16px;
     text-decoration: none;
     cursor: url('main-imgs/cursor.png') 42 42, auto;
@@ -267,7 +296,7 @@ header {
 }
 
 .btn:hover {
-    transform: scale(1.7);
+    transform: scale(1.08);
     transition: transform 0.3s ease;
 }
 
@@ -498,7 +527,7 @@ footer a:hover {
     border-radius: 10px;
     font-size: 21px;
     box-shadow: 3px 0px 3px #6227006b;
-    cursor: pointer;
+    cursor: url('main-imgs/cursor.png') 32 32, auto;
     width: max-content;
 }
 
@@ -654,6 +683,8 @@ img.new{
 }
 
 #special .title {
+    width: 278px;
+    margin: 20px auto;
     font-size: 36px;
     font-weight: bold;
     color: #ff5722;
@@ -877,7 +908,7 @@ textarea::placeholder{
     border: none;
     border-radius: 5px;
     font-size: 16px;
-    cursor: pointer;
+    cursor: url('main-imgs/cursor.png') 32 32, auto;
     width: 95%;
 }
 
@@ -921,7 +952,7 @@ textarea::placeholder{
     position: absolute;
     top: 10px;
     right: 10px;
-    cursor: pointer;
+    cursor: url('main-imgs/cursor.png') 32 32, auto;
     font-size: 20px;
     color: #3e2723;
 }
@@ -1010,7 +1041,7 @@ option:checked {
     padding: 10px 30px 10px 10px;
     font-size: 16px;
     border-radius: 8px;
-    cursor: pointer;
+    cursor: url('main-imgs/cursor.png') 32 32, auto;
     transition: 0.4;
     appearance: none;
 }
@@ -1121,6 +1152,10 @@ option:checked {
     border-radius: 5px;
     font-family: 'Open Sans', sans-serif;
     color: #3e2723;
+    resize: none;
+    width: 98% !important;
+    box-sizing: border-box;
+    margin: 0 auto;
 }
 #wish textarea::placeholder{
     color: #5f3c31;
@@ -1132,12 +1167,15 @@ option:checked {
     color: #5d4037;
 }
 #wish button {
+    width: 98%;
+    box-sizing: border-box;
     padding: 10px;
     background-color: #3e2723;
     color: white;
     border: none;
     border-radius: 5px;
-    cursor: pointer;
+    margin: 0 auto;
+    cursor: url('main-imgs/cursor.png') 32 32, auto;
     font-family: 'Open Sans', sans-serif;
 }
 
@@ -1150,12 +1188,17 @@ option:checked {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    max-height: 300px; 
-   overflow-y: scroll; 
-   padding-right: 10px;
-   border: 2px solid #542525;
+    max-height: 280px; 
+    overflow-y: scroll; 
+    padding-right: 9px;
+    border: 2px solid #542525;
+    border-radius: 8px;
+    padding-bottom: 9px;
+    cursor: url('main-imgs/serp-cur.png') 32 32, auto;
 }
-
+#wish #messages::-webkit-scrollbar {
+    width: 0;
+}
 .message {
     background-color: #f9f9f9;
     padding: 10px;
@@ -1171,6 +1214,10 @@ option:checked {
 .notification {
     padding: 15px;
     position: relative;
+    box-sizing: border-box;
+    transform: translateX(150%);
+    transition: transform 3s;
+    width: 300px;
     background-color: #ff5722;
     color: white;
     border-radius: 5px;
@@ -1180,15 +1227,13 @@ option:checked {
 }
 #notification-container {
     position: fixed;
-    right: 10px;
     top: 100px;
-    left: 50%;
-    transform: translateX(-50%);
     z-index: 1000;
     display: flex;
     flex-direction: column;
     gap: 10px;
-    width: 300px;
+    width: 100%;
+    align-items: center;
 }
 
 .notification.active {
@@ -1200,9 +1245,17 @@ option:checked {
     top: 5px;
     right: 10px;
     font-size: 20px;
-    cursor: pointer;
+    cursor: url('main-imgs/cursor.png') 32 32, auto;
 }
 
+@keyframes translateNot {
+    0%{
+        transform: translateX(150%);
+    }
+    100%{
+        transform: translateX(0);
+    }
+}
 
 @keyframes bounce {
     0% {
@@ -1441,5 +1494,9 @@ section {
 @media (min-width: 769px) {
     .menu {
         display: none;
+    }
+    #notification-container{
+        width: 300px;
+        right: 20px;
     }
 }

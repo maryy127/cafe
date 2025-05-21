@@ -38,7 +38,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 menuHeader.classList.remove('active');
                 overlay.classList.remove('active');
                 header.style.display = 'flex';
-                header.style.animation = 'fadeIn 0.3s 1';
             }, 300);
         }
     });
@@ -89,7 +88,6 @@ document.addEventListener('DOMContentLoaded', () => {
                             overlay.classList.remove('active');
                             menuHeader.classList.remove('active');
                             header.style.display = 'flex';
-                            header.style.animation = 'fadeIn 0.3s 1';
                         }, 300);
                     }
                     clickCount = 0; 
@@ -104,7 +102,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     overlay.classList.remove('active');
                     menuHeader.classList.remove('active');
                     header.style.display = 'flex';
-                    header.style.animation = 'fadeIn 0.3s 1';
                     window.location.href = link.href;
                 }, 200)
             }
@@ -127,7 +124,6 @@ document.addEventListener('DOMContentLoaded', () => {
             menuHeader.classList.remove('active');
             overlay.classList.remove('active');
             header.style.display = 'flex';
-            header.style.animation = 'fadeIn 0.3s 1';
         }, 300); 
 
     }); 
