@@ -204,7 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const discount = ((oldPrice - newPrice) / oldPrice) * 100;
         const discountRounded = Math.round(discount);
 
-        const discountElement = special.querySelector('.disc p');
+        const discountElement = special.querySelector('.ribbon span');
         discountElement.textContent = `–${discountRounded}%`;
     });
 

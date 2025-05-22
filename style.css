@@ -608,21 +608,50 @@ footer a:hover {
     transform: translateY(-9px) scale(1.2);
 }
 
-/* Скидка */
-.good .disc {
-    position: absolute;
-    top: 36px;
-    right: -7px;
-    background-color: rgb(112, 44, 44);
-    color: #f5f5f5;
-    width: 142px;
-    border-radius: 6px;
-    padding: 7px;
-    transform: rotate(36deg);
+/* Скидка (source: https://www.cssportal.com/css-ribbon-generator/)*/
+.ribbon {
+  position: absolute;
+  right: -5px; top: -5px;
+  z-index: 1;
+  overflow: hidden;
+  width: 75px; height: 75px;
+  text-align: right;
 }
-
-.disc p {
-    margin: 0;
+.ribbon span {
+  color: #8F0808;
+  font-size: 14px;
+  font-weight: bold;
+  color: #FFF;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 20px;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  width: 110px;
+  display: block;
+  background: #79A70A;
+  background: linear-gradient(#ff5722 0%, #bf1717 100%);
+  box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
+  position: absolute;
+  top: 19px; right: -21px;
+}
+.ribbon span::before {
+  content: "";
+  position: absolute; left: 0px; top: 100%;
+  z-index: -1;
+  border-left: 3px solid #8F0808;
+  border-right: 3px solid transparent;
+  border-bottom: 3px solid transparent;
+  border-top: 3px solid #8F0808;
+}
+.ribbon span::after {
+  content: "";
+  position: absolute; right: 0px; top: 100%;
+  z-index: -1;
+  border-left: 3px solid transparent;
+  border-right: 3px solid #8F0808;
+  border-bottom: 3px solid transparent;
+  border-top: 3px solid #8F0808;
 }
 
 img.new{
