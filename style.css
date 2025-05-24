@@ -335,6 +335,7 @@ header {
     margin-top: 30px;
 }
 .gallery {
+    max-width: 950px;
     width: 80%;
     overflow: hidden;
     cursor: url('main-imgs/zadumalsya.png') 32 32, auto;
