@@ -602,6 +602,7 @@ footer a:hover {
     display: none;
     padding: 13px;
     text-align: center;
+    max-width: 450px;
     width: 30%;
     border-radius: 16px;
     position: relative;
