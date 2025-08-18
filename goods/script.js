@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Функция для получения количества товаров на странице
     function getProductsPerPage() {
         const width = window.innerWidth;
-        if ((width > 2018) || ((width < 1237) && (width > 546))) return 4;
+        if (width > 1099) return 4;
         return 3;
     }
 

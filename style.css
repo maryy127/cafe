@@ -583,12 +583,10 @@ footer a:hover {
 }
 
 .goods {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 20px;
-    margin: 10px auto;
-    padding: 30px;
-    justify-content: center;
+    padding: 20px;
 }
 
 #menu .btn-menu.active {
@@ -599,11 +597,11 @@ footer a:hover {
 }
 
 .good {
+    box-sizing: border-box;
     display: none;
     padding: 13px;
     text-align: center;
-    max-width: 450px;
-    width: 30%;
+    width: 100%;
     border-radius: 16px;
     position: relative;
     cursor: url('main-imgs/serp-cur.png') 42 42, auto;
@@ -1456,10 +1454,6 @@ section {
         margin-top: 20px;
     }
 
-    .good {
-        width: 42%;
-    }
-
     .good .title {
         font-size: 17px;
     }
@@ -1520,9 +1514,6 @@ section {
     }
 }
 @media (max-width: 552px) {
-    .good{
-        width: 80%;
-    }
     #menu .btns{
         justify-content: flex-start;
     }
@@ -1596,5 +1587,11 @@ section {
     #notification-container{
         width: 300px;
         right: 20px;
+    }
+}
+
+@media (min-width: 1370px) {
+    .goods {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     }
 }
