@@ -30,7 +30,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const bells = document.querySelectorAll('.bell-toggle');
 
+    // Инициализация избранного
+    function initializeFavorites() {
+        const favorites = JSON.parse(localStorage.getItem('favorites') || '{}');
+        goods.forEach(good => {
+            const title = good.querySelector('.title').textContent;
+            const regularHeart = good.querySelector('.fa-regular.fa-heart');
+            const solidHeart = good.querySelector('.fa-solid.fa-heart');
+            if (favorites[title]) {
+                regularHeart.style.display = 'none';
+                solidHeart.style.display = 'block';
+                solidHeart.style.opacity = '1';
+            } else {
+                regularHeart.style.display = 'block';
+                solidHeart.style.display = 'none';
+                solidHeart.style.opacity = '0';
+            }
+        });
+    }
 
+    // Обновление избранного 
+    function updateFavorites(title, isFavorite) {
+        const favorites = JSON.parse(localStorage.getItem('favorites') || '{}');
+        if (isFavorite) {
+            favorites[title] = true;
+        } else {
+            delete favorites[title];
+        }
+        localStorage.setItem('favorites', JSON.stringify(favorites));
+    }
     // Функция для получения количества товаров на странице
     function getProductsPerPage() {
         const width = window.innerWidth;
@@ -88,6 +116,9 @@ document.addEventListener('DOMContentLoaded', () => {
         showPage(currentPage);
         updateButtons();
     }
+
+    updatePagination();
+    initializeFavorites();
 
     updatePagination();
 
@@ -169,16 +200,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
         regularHeart.addEventListener('click', () => {
             regularHeart.style.opacity = '0';
+            const title = good.querySelector('.title').textContent;
             setTimeout(() => {
                 regularHeart.style.display = 'none';
                 solidHeart.style.display = 'block';
                 solidHeart.style.opacity = '1';
                 solidHeart.classList.add('fa-bounce')
                 solidHeart.setAttribute('title', 'Удалить из Избранного');
+                updateFavorites(title, true);
             }, 100);
         });
 
         solidHeart.addEventListener('click', () => {
+            const title = good.querySelector('.title').textContent;
             solidHeart.style.opacity = '0';
             setTimeout(() => {
                 solidHeart.style.display = 'none';
@@ -186,6 +220,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 regularHeart.style.opacity = '1';
                 regularHeart.style.animation = 'bounce 0.5s ease';
                 regularHeart.setAttribute('title', 'Добавить в Избранное');
+                updateFavorites(title, false);
             }, 100);
         });
     });

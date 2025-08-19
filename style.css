@@ -48,6 +48,7 @@ body {
     padding: 0;
     background-color: #f5f5f5;
     color: #3e2723;
+    overflow-x: hidden;
 }
 
 h1,
@@ -567,8 +568,34 @@ footer a:hover {
     display: flex;
     justify-content: center;
     gap: 18px;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+}
+
+.panel-btns-fav{
+    display: flex;
+    justify-content: center;
     margin: 20px auto;
     flex-wrap: wrap;
+    position: relative;
+}
+.favorite-link a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 200px;
+    color: #3e2723;
+    padding: 10px;
+    margin-left: 30px;
+    border: 2px #ff5722 solid;
+    border-radius: 12px;
+    position: absolute;
+    right: 10px;
+}
+
+.favorite-link a:hover{
+    background-color: #ff5722;
+    color: #f5f5f5;
 }
 
 .btn-menu {
@@ -605,6 +632,8 @@ footer a:hover {
     border-radius: 16px;
     position: relative;
     cursor: url('main-imgs/serp-cur.png') 42 42, auto;
+    max-width: 400px;
+    margin: auto;
 
 }
 
@@ -658,6 +687,67 @@ footer a:hover {
     transform: translateY(-9px) scale(1.2);
 }
 
+.favhead{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 1.2em;
+    flex-direction: row !important;
+}
+
+h1.fav{
+    text-align: center;
+    margin: auto;
+}
+
+.favhead .fa-arrow-left{
+    color: #f5f5f5;
+    font-size: 19px;
+    cursor: pointer;
+}
+.favhead .fa-arrow-left:hover{
+    color: #ff5722;
+}
+.favorites{
+    margin-top: 120px;
+}
+
+.empty-message{
+    margin: auto;
+    text-align: center;
+    font-size: 20px;
+}
+
+.empty-message a{
+    animation: click-favs 1.5s infinite ease-in;
+    font-weight: bold;
+}
+.empty-message a:hover{
+    animation: none;
+    color: #bf1717;
+    font-size: 22px;
+}
+
+@keyframes click-favs {
+    0%{
+        color: #A96A5F;
+    }
+    25%{
+        color: #ff5722;
+    }
+    50%{
+        color: #bf1717;
+    }
+    75%{
+        color: #8F0808;
+    }
+    100%{
+        color: #A96A5F;
+    }
+}
 /* Скидка (source: https://www.cssportal.com/css-ribbon-generator/)*/
 .ribbon {
   position: absolute;
@@ -777,14 +867,17 @@ img.new{
 #special .item {
     background-color: white;
     padding: 28px;
+    box-sizing: border-box;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
+    width: 100%;
+    max-width: 500px;
+    aspect-ratio: 1/1;
+    margin: auto;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     display: flex;
-    height: 300px;
     cursor: url('main-imgs/serp-cur.png') 42 42, auto;
     position: relative;
 
@@ -847,12 +940,10 @@ p.prim{
 }
 
 #special .specials{
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     padding: 20px;
     gap: 1em;
-    align-items: center;
-    justify-content: center;
     animation: fadeIn 0.9s ease-in-out;
 }
 .item.cookie{
@@ -1470,12 +1561,21 @@ section {
         gap: 10px;
         padding: 7px 10px;
         flex-wrap: nowrap;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
     }
 
-    #menu .btns::-webkit-scrollbar {
+    .empty-message{
+        font-size: 18px;
+    }
+    .favhead h1{
+        font-size: 24px;
+    }
+    .panel-btns-fav::-webkit-scrollbar {
         display: none;
+    }
+    .panel-btns-fav {
+        flex-direction: column;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
     }
 
     .btn-menu {
@@ -1564,6 +1664,10 @@ section {
         color: #fff;
         background-image: unset;
     }
+
+    #speacial .specials{
+        padding: 10px;
+    }
     .scroll-to-top{
     bottom: 14px;
     right: 12px;
@@ -1593,5 +1697,15 @@ section {
 @media (min-width: 1370px) {
     .goods {
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+}
+
+@media (max-width: 1100px) {
+    .favorite-link a{
+        position: static;
+        margin: 20px auto;
+    }
+    .panel-btns-fav{
+        flex-direction: column;
     }
 }
