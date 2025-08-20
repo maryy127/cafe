@@ -20,6 +20,8 @@ document.addEventListener('DOMContentLoaded', () => {
         targetId = 'our-work';
     } else if (document.body.classList.contains('wish-page')){
         targetId = 'wish';
+    } else if (document.body.classList.contains('favgoods')){
+        targetId = 'favorites';
     }
 
     const targetElement = document.getElementById(targetId);
