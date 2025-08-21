@@ -3,7 +3,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const messagesContainer = document.getElementById('messages');
     const notificationContainer = document.getElementById('notification-container');
     let usersMessages = JSON.parse(localStorage.getItem('usersMessages') || '[]');
-    let pendingDeletion = null; 
+    let pendingDeletion = null;
+    let deleteTimeoutId = null; 
 
     // Фиктивные отзывы
     const fakeWishes = [
@@ -23,11 +24,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const maxTotalMessages = 106;
         const shuffledFake = fakeWishes.sort(() => 0.7 - Math.random()).slice(0, minFakeWishes);
         const maxUserMessages = 100;
-        const userDisplay = usersMessages.slice(-maxUserMessages).reverse(); 
+        const userDisplay = usersMessages.slice(-maxUserMessages).reverse();
         const displayMessages = [...userDisplay, ...shuffledFake].slice(0, maxTotalMessages);
-        displayMessages.forEach((wish, index) => {
-            const isUserMessage = usersMessages.some(u => u.name === wish.name && u.text === wish.text);
-            const messageElement = createMessageElement(wish.name, wish.text, isUserMessage);
+        displayMessages.forEach((wish) => {
+            const isUserMessage = usersMessages.some(u => u.id === wish.id);
+            const messageElement = createMessageElement(wish.name, wish.text, isUserMessage, wish.id);
             messagesContainer.appendChild(messageElement);
             if (isUserMessage) {
                 const deleteIcon = messageElement.querySelector('.delete-icon');
@@ -39,22 +40,30 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
                 deleteIcon.addEventListener('click', () => {
                     messageElement.style.display = 'none';
-                    pendingDeletion = { name: wish.name, text: wish.text, element: messageElement };
-                    addNotification('Вернуть пожелание?', false, true); 
+                    pendingDeletion = { id: wish.id, element: messageElement };
+                    addNotification('Вернуть пожелание?', false, true);
+                    deleteTimeoutId = setTimeout(() => {
+                        if (pendingDeletion) {
+                            removeUserMessagePermanently();
+                            const restoreNotif = notificationContainer.querySelector('.restore-notification');
+                            if (restoreNotif) restoreNotif.remove();
+                        }
+                    }, 6000);
                 });
             }
         });
     }
 
     // Функция для создания элемента сообщения
-    function createMessageElement(name, text, isUserMessage = false) {
+    function createMessageElement(name, text, isUserMessage = false, id = null) {
         const messageDiv = document.createElement('div');
         messageDiv.classList.add('message');
+        messageDiv.dataset.id = id;
         if (isUserMessage) {
             messageDiv.classList.add('user-message');
             messageDiv.innerHTML = `<span class="name">${name}:</span> <p>${text}</p> <i class="fa-solid fa-trash delete-icon" style="display: none; cursor: pointer;"></i>`;
         } else {
-            messageDiv.innerHTML = `<span class="name">${name}:</span> <p>${text}<p>`;
+            messageDiv.innerHTML = `<span class="name">${name}:</span> <p>${text}</p>`;
         }
         return messageDiv;
     }
@@ -63,6 +72,9 @@ document.addEventListener('DOMContentLoaded', () => {
     function createNotification(message, showClearButton = false, showRestoreButton = false) {
         const notification = document.createElement('div');
         notification.classList.add('notification');
+        if (showRestoreButton) {
+            notification.classList.add('restore-notification'); 
+        }
         notification.innerHTML = message;
 
         const closeBtn = document.createElement('i');
@@ -75,6 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 removeUserMessagePermanently();
             }
             notification.remove();
+            if (deleteTimeoutId) clearTimeout(deleteTimeoutId); 
         });
 
         if (showClearButton) {
@@ -86,18 +99,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 localStorage.setItem('usersMessages', JSON.stringify(usersMessages));
                 displayWishes();
                 notification.remove();
+                if (deleteTimeoutId) clearTimeout(deleteTimeoutId);
             });
             notification.appendChild(clearBtn);
         } else if (showRestoreButton) {
             const restoreBtn = document.createElement('button');
             restoreBtn.textContent = 'Да';
-            restoreBtn.style.margin= '15px auto';
+            restoreBtn.style.margin = '15px auto';
             restoreBtn.addEventListener('click', () => {
                 if (pendingDeletion) {
                     pendingDeletion.element.style.display = 'flex';
                     pendingDeletion = null;
                 }
                 notification.remove();
+                if (deleteTimeoutId) clearTimeout(deleteTimeoutId); 
             });
             notification.appendChild(restoreBtn);
         }
@@ -108,15 +123,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // Функция для добавления уведомления
     function addNotification(message, showClearButton = false, showRestoreButton = false) {
         if (notificationContainer) {
-            const maxNotifications = window.innerWidth >= 768 ? 5 : 3;
+            const maxNotifications = 3;
+            if (notificationContainer.children.length >= maxNotifications) {
+                notificationContainer.removeChild(notificationContainer.firstChild);
+                console.log('Удалено одно старое уведомление для соблюдения лимита:', maxNotifications);
+            }
             const notification = createNotification(message, showClearButton, showRestoreButton);
             notificationContainer.appendChild(notification);
-            if (notificationContainer.children.length > maxNotifications) {
-                while (notificationContainer.firstChild) {
-                    notificationContainer.removeChild(notificationContainer.firstChild);
-                }
-                console.log('Все уведомления удалены, достигнут лимит:', maxNotifications);
-            }
             notification.style.animation = "1.1s translateNot 1";
             notification.style.transform = "translateX(0)";
         } else {
@@ -127,10 +140,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Функция для окончательного удаления сообщения
     function removeUserMessagePermanently() {
         if (pendingDeletion) {
-            usersMessages = usersMessages.filter(u => !(u.name === pendingDeletion.name && u.text === pendingDeletion.text));
+            usersMessages = usersMessages.filter(u => u.id !== pendingDeletion.id);
             localStorage.setItem('usersMessages', JSON.stringify(usersMessages));
             displayWishes();
             pendingDeletion = null;
+            if (deleteTimeoutId) clearTimeout(deleteTimeoutId);
         }
     }
 
@@ -154,19 +168,27 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 if (pendingDeletion) {
                     removeUserMessagePermanently();
-                    const activeNotif = notificationContainer.querySelector('.notification');
-                    if (activeNotif) activeNotif.remove();
+                    const restoreNotif = notificationContainer.querySelector('.restore-notification');
+                    if (restoreNotif) restoreNotif.remove(); 
                 }
-                usersMessages.push({ name, text: wish });
+                const newId = Date.now().toString();
+                usersMessages.push({ name, text: wish, id: newId });
                 localStorage.setItem('usersMessages', JSON.stringify(usersMessages));
                 displayWishes();
                 form.reset();
                 addNotification(
-                    'Сообщение отправлено, но серверов пока что нет, поэтому можете написать мне в <a href="https://twitter.com/sybau_radicals" style="color: brown;" target="_blank">Твиттер</a>.'
+                    'Сообщение отправлено в локальное хранилище браузера, тк серверов пока что нет, поэтому можете написать мне в <a href="https://t.me/garnaya271" style="color: brown;" target="_blank">Телеграм</a>.'
                 );
             }
         } else {
             console.log('Поля не заполнены');
+        }
+    });
+
+    // Обработка закрытия/перезагрузки страницы
+    window.addEventListener('beforeunload', () => {
+        if (pendingDeletion) {
+            removeUserMessagePermanently();
         }
     });
 });

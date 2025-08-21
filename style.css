@@ -916,7 +916,7 @@ img.new{
     display: flex;
     align-items: center;
     gap: 9px;
-    font-size: 18px;
+    font-size: 16.7px;
     color: #ff5722;
     flex-wrap: wrap;
 }
@@ -1399,6 +1399,10 @@ option:checked {
     position: absolute;
     right: 18px;
     color: #ff5722;
+    background-color: rgba(235, 227, 227, 0.783);
+    padding: 4px;
+    border-radius: 6px;
+    font-size: 18px;
 }
 .message .name {
     font-weight: bold;
